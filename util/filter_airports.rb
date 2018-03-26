@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 #
 # filters a JSON database of the world's airports down to only those that are
 # within the US. Database (not included in this repo) obtained from:
