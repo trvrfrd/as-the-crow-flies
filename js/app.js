@@ -8,7 +8,7 @@ var toResultData = {};
 
 var itinerary = document.querySelector('.itinerary');
 
-fetch('../data/airports.json')
+fetch('data/airports.json')
   .then(response => response.json())
   .then(airports => {
     initTypeAhead({ input: from, output: fromResultList, data: airports, resultData: fromResultData });
