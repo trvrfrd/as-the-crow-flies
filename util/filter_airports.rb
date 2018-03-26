@@ -17,7 +17,7 @@ require 'open-uri'
 
 db_url = 'https://raw.githubusercontent.com/mwgg/Airports/master/airports.json'
 out_path = './data/airports.json'
-required_fields = %w(iata name city lat lon)
+required_fields = %w(iata name city state lat lon)
 
 unless File.exist?(out_path)
   open(db_url, 'r') do |infile|
