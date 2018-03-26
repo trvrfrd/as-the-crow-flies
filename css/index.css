@@ -1,0 +1,53 @@
+body {
+  margin: 0;
+  padding: 0;
+
+  font-size: 16px;
+  height: 100vh;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr 1fr 2fr;
+  grid-template-areas:
+    "header header"
+    "from from"
+    "to to"
+    "itinerary itinerary";
+  justify-items: center;
+}
+
+h1 {
+  font-size: 1.8em;
+}
+
+.from, .to {
+  text-align: center;
+  width: 100%;
+}
+
+.from__result-list, .to__result-list {
+  list-style-type: none;
+  padding: 0;
+  text-align: left;
+}
+
+.highlight {
+  font-weight: bold;
+}
+
+.header {
+  grid-area: header;
+}
+
+.from {
+  grid-area: from;
+}
+
+.to {
+  grid-area: to;
+}
+
+.itinerary {
+  grid-area: itinerary;
+}
+
