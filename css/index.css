@@ -20,12 +20,12 @@ h1 {
   font-size: 1.8em;
 }
 
-.from, .to {
+.control, .header, .itinerary {
   text-align: center;
   width: 100%;
 }
 
-.from__result-list, .to__result-list {
+.control__result-list {
   list-style-type: none;
   padding: 0;
   text-align: left;
