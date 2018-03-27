@@ -6,13 +6,13 @@ body {
   height: 100vh;
 
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-template-rows: auto 1fr 1fr 2fr;
   grid-template-areas:
-    "header header"
-    "from from"
-    "to to"
-    "itinerary itinerary";
+    "header"
+    "from"
+    "to"
+    "itinerary";
   justify-items: center;
 }
 
@@ -51,3 +51,13 @@ h1 {
   grid-area: itinerary;
 }
 
+@media screen and (min-width: 800px) {
+  body {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 3fr 3fr;
+    grid-template-areas:
+      "header header"
+      "from to"
+      "itinerary itinerary";
+  }
+}
