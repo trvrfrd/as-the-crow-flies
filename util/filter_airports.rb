@@ -25,8 +25,9 @@ unless File.exist?(out_path)
     airports = JSON.load(infile)
     # make an array of data hashes
     airports = airports.map { |_, v| v }
-      .select! { |a| a["country"] == "US" && !a["iata"].empty? }
+      .select! { |a| a['country'] == 'US' && !a['iata'].empty? }
       .map! { |a| a.keep_if { |k, _| required_fields.include?(k) } }
+      .each { |a| a['state'] = a['state'].gsub('-', ' ') }
     File.open(out_path, 'w') do |outfile|
       outfile.write(JSON.dump(airports))
     end
