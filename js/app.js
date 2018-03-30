@@ -1,24 +1,23 @@
 var from = document.querySelector('#from');
 var fromResultList = document.querySelector('.from .control__result-list');
-var fromResultData = {};
 
 var to = document.querySelector('#to');
 var toResultList = document.querySelector('.to .control__result-list');
-var toResultData = {};
 
 var itinerary = document.querySelector('.itinerary');
 
 fetch('data/airports.json')
   .then(response => response.json())
   .then(airports => {
-    initTypeAhead({ input: from, output: fromResultList, data: airports, resultData: fromResultData });
-    initTypeAhead({ input: to, output: toResultList, data: airports, resultData: toResultData });
+    initTypeAhead({ input: from, output: fromResultList, data: airports });
+    initTypeAhead({ input: to, output: toResultList, data: airports });
   });
 
-function initTypeAhead({ input, output, data, resultData }) {
+function initTypeAhead({ input, output, data }) {
+  delete input.dataset.lat;
+  delete input.dataset.lon;
+
   input.addEventListener('input', function handleInput() {
-    delete resultData.lat;
-    delete resultData.lon;
     var query = this.value || null;
     var matches = filterItems(data, query).slice(0, 10);
     console.log(matches);
@@ -35,8 +34,8 @@ function initTypeAhead({ input, output, data, resultData }) {
     } else {
       return;
     }
-    resultData.lat = li.dataset.lat;
-    resultData.lon = li.dataset.lon;
+    input.dataset.lat = li.dataset.lat;
+    input.dataset.lon = li.dataset.lon;
     input.value = li.innerText;
     output.innerHTML = '';
     displayItinerary();
@@ -60,12 +59,12 @@ function renderAirport(data, highlightText) {
 }
 
 function displayItinerary() {
-  if (!dataReady(fromResultData, toResultData)) {
+  if (!dataReady(from.dataset, to.dataset)) {
     itinerary.innerHTML = "<p>blah blah</p>";
-  } else if (sameLocation(fromResultData, toResultData)) {
+  } else if (sameLocation(from.dataset, to.dataset)) {
     itinerary.innerHTML = "<p>looks like you've already arrived</p>";
   } else {
-    itinerary.innerHTML = `<p>${displayDistance(fromResultData, toResultData)}</p>`
+    itinerary.innerHTML = `<p>${displayDistance(from.dataset, to.dataset)}</p>`
   }
 }
 
